@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulačka mzdy - AČR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    .section {
+      margin-top: 30px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: #004080;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0066cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kalkulačka mzdy - AČR</h1>
+
+  <label for="rank">Hodnost:</label>
+  <select id="rank" name="rank">
+    <option value="">-- Vyberte hodnost --</option>
+    <option value="vojin">Vojín</option>
+    <option value="svobodnik">Svobodník</option>
+    <option value="desatnik">Desátník</option>
+    <option value="cetar">Četař</option>
+    <option value="rotny">Rotný</option>
+    <option value="rotmistr">Rotmistr</option>
+    <option value="nadrotmistr">Nadrotmistr</option>
+    <option value="praporcik">Praporčík</option>
+    <option value="nadpraporcik">Nadpraporčík</option>
+    <option value="stabni_praporcik">Štábní praporčík</option>
+    <option value="porucik">Poručík</option>
+    <option value="nadporucik">Nadporučík</option>
+    <option value="kapitan">Kapitán</option>
+    <option value="major">Major</option>
+    <option value="podplukovnik">Podplukovník</option>
+    <option value="plukovnik">Plukovník</option>
+    <option value="brigadni_general">Brigádní generál</option>
+    <option value="generalmajor">Generálmajor</option>
+    <option value="generalporucik">Generálporučík</option>
+    <option value="armadni_general">Armádní generál</option>
+  </select>
+  
+
+  <label for="vykon">Výkonnostní příplatek (Kč):</label>
+  <input type="number" id="vykon" name="vykon" min="0" step="100">
+
+  <label for="stabil">Stabilizační příplatek (Kč):</label>
+  <input type="number" id="stabil" name="stabil" min="0" step="1000">
+
+  <label for="bydleni">Příspěvek na bydlení (Kč):</label>
+  <input type="number" id="bydleni" name="bydleni" min="0" step="100">
+
+  <label for="clenove">Počet ostatních členů domácnosti:</label>
+  <select id="clenove" name="clenove">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+
+  <div class="section">
+    <label for="deti">Počet dětí s daňovou slevou:</label>
+    <select id="deti" name="deti">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+
+  <button onclick="vypocetMzdy()">Vypočítat mzdu</button>
+
+  <div id="vysledek" style="margin-top: 30px; font-size: 18px;"></div>
+
+  <script>
+    function vypocetMzdy() {
+      const vykon = parseInt(document.getElementById('vykon').value) || 0;
+      const stabil = parseInt(document.getElementById('stabil').value) || 0;
+      const bydleni = parseInt(document.getElementById('bydleni').value) || 0;
+      const deti = parseInt(document.getElementById('deti').value) || 0;
+      const clenove = parseInt(document.getElementById('clenove').value) || 0;
+
+      // Základní mzda podle hodnosti
+      const zakladMzdy = {
+        "vojin": 20800,
+        "svobodnik": 31810,
+        "desatnik": 33390,
+        "cetar": 35130,
+        "rotny": 40310,
+        "rotmistr": 42910,
+        "nadrotmistr": 45530,
+        "praporcik": 48410,
+        "nadpraporcik": 51550,
+        "stabni_praporcik": 65990,
+        "porucik": 45790,
+        "nadporucik": 51550,
+        "kapitan": 58780,
+        "major": 65990,
+        "podplukovnik": 73210,
+        "plukovnik": 87650,
+        "brigadni_general": 102080,
+        "generalmajor": 116490,
+        "generalporucik": 130930,
+        "armadni_general": 145350
+      };
+
+      const hodnost = document.getElementById('rank').value;
+      const zaklad = zakladMzdy[hodnost] || 0;
+
+      const slevaNaDite = [0, 1267, 1860, 2320, 2320, 2320]; // přibližné hodnoty měsíční slevy
+
+      let celkovaSleva = 2570;
+      for (let i = 1; i <= deti; i++) {
+        celkovaSleva += slevaNaDite[Math.min(i, 5)];
+      }
+
+      const hrubaMzda = zaklad + vykon + stabil;
+      const dan = Math.max(0, (hrubaMzda * 0.15) - celkovaSleva); // jednoduchý výpočet daně
+      const zdravotniPojisteni = 0.045 * hrubaMzda
+      const socialniPojisteni = 0.071 * hrubaMzda
+
+      const cistaMzda = hrubaMzda - dan - zdravotniPojisteni - socialniPojisteni + bydleni + (clenove * 300);
+
+      document.getElementById('vysledek').innerHTML = `
+        <strong>Hrubá mzda:</strong> ${hrubaMzda.toLocaleString('cs-CZ')} Kč<br>
+        <strong>Daň:</strong> ${dan.toLocaleString('cs-CZ')} Kč<br>
+        <strong>Zdravotni pojisteni:</strong> ${zdravotniPojisteni.toLocaleString('cs-CZ')} Kč<br>
+        <strong>Socialni pojisteni:</strong> ${socialniPojisteni.toLocaleString('cs-CZ')} Kč<br>
+        <strong>Čistá mzda:</strong> <span style="color:green">${cistaMzda.toLocaleString('cs-CZ')} Kč</span>
+      `;
+    }
+  </script>
+</body>
+</html>
