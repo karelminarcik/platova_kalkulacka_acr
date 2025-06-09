@@ -2,8 +2,12 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>Kalkulačka mzdy - AČR</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Platová kalkulačka AČR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Platová Kalkulačka AČR - interaktivní online nástroj pro rychlý výpočet platu vojáků Armády České republiky.">
+  <meta name="keywords" content="AČR, voják, platová kalkulačka">
+  <meta name="author" content="Karel Minarcik">
+  <meta name="robots" content="index, follow">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -70,8 +74,10 @@
   </style>
 </head>
 <body>
+  <head></head>
 
-  <div class="kalkulacka-container mt-5">
+  <main>
+    <div class="kalkulacka-container mt-5">
     <h1 class="text-center mb-4">Kalkulačka mzdy - AČR</h1>
 
     <label for="rank">Hodnost:</label>
@@ -139,15 +145,38 @@
     <button class="btn btn-calc mt-4" onclick="vypocetMzdy()">Vypočítat mzdu</button>
 
     <div id="vysledek" class="mt-4"></div>
-
-    <div class="share-btns mt-5">
-      <h5>Sdílet výsledek:</h5>
-      <a href="#" id="share-email" target="_blank">📧 E-mail</a>
-      <a href="#" id="share-facebook" target="_blank">📘 Facebook</a>
-      <a href="#" id="share-whatsapp" target="_blank">🟢 WhatsApp</a>
-      <a href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
-    </div>
   </div>
+  </main>
+
+  <footer>
+
+        <div class="footer-text">
+            <p>Nyní jsme i na Facebooku <a href="https://www.facebook.com/rentaacr/" title="Renta AČR - Facebook" target="_blank" rel="noopener"><i class='bx bxl-facebook-circle' title="Facebook"></i></a> </p>
+            <p>Copyright &copy; <span id="currentYear"></span> vytvořil<a href="#" id="aboutAuthorLink">Karel Minarcik</a> | Všechna práva vyhrazena.</p>
+        </div>
+        
+        <div class="footer-iconTop">
+            <a href="#kalkulacka" title="Back to Top"><i class='bx bx-up-arrow-alt' title="Nahoru"></i></a>           
+        </div>
+        
+    </footer>
+
+    <div id="authorPopup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h3>O autorovi</h3>
+            <p>Karel Minarčík je začínající webový vývojář s vášní pro tvorbu moderních a responzivních webových stránek. Zaměřuje se na vývoj dynamických a funkčních webových aplikací s důrazem na uživatelskou přívětivost, estetiku a optimalizaci výkonu.</p>
+            <p>Ve své práci využívá klíčové technologie, jako jsou <strong>HTML, CSS a JavaScript</strong>, které mu umožňují vytvářet vizuálně atraktivní a interaktivní weby. Kromě front-endu se věnuje také back-endovému vývoji, kde pracuje s <strong>PHP, SQL a Pythonem</strong> , 
+                což mu dává možnost vytvářet komplexní a datově orientované aplikace. Má rovněž zkušenosti s <strong>analýzou dat</strong>, což mu umožňuje zpracovávat a interpretovat informace efektivním způsobem, například pro zlepšení uživatelského zážitku nebo optimalizaci firemních procesů.</p>
+            <p>Další oblastí jeho zájmu je <strong>SEO (Search Engine Optimization)</strong> , tedy optimalizace webových stránek pro vyhledávače. Díky tomu dokáže weby nejen efektivně kódovat, ale i přizpůsobit je tak, aby dosahovaly lepších výsledků ve vyhledávání a přitahovaly více návštěvníků.</p>
+            <p>Karel je motivovaný neustále se učit nové technologie a rozšiřovat své znalosti, aby mohl poskytovat kvalitní a inovativní řešení. Jeho cílem je vytvářet weby, které nejen skvěle vypadají, ale také efektivně fungují a přinášejí hodnotu uživatelům i firmám.</p>
+            <div class="odkazy">
+                <a href="https://www.linkedin.com/in/karel-minarcik/">LinkedIn</a>
+                <a href="https://rentaacr.cz/karelminarcik.html">Web</a>
+            </div>
+            
+        </div>
+    </div>
 
   <script>
     function vypocetMzdy() {
