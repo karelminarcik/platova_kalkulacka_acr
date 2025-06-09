@@ -3,95 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <title>Kalkulačka mzdy - AČR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
+      background-color: #111;
+      color: #0ef;
     }
-    h1 {
-      text-align: center;
+    .kalkulacka-container {
+      width: 60vw;
+      max-width: 100%;
+      margin: 0 auto;
+      background-color: #222;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
     }
     label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
+      margin-top: 1rem;
     }
     input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
+      background-color: #000;
+      color: #0ef;
+      border: 1px solid #0ef;
     }
-    .section {
-      margin-top: 30px;
-      border-top: 1px solid #ccc;
-      padding-top: 20px;
+    input:focus, select:focus {
+      border-color: #0ef;
+      box-shadow: 0 0 5px #0ef;
+      background-color: #000;
+      color: #0ef;
     }
-    button {
-      margin-top: 20px;
-      padding: 10px;
-      width: 100%;
-      background-color: #004080;
-      color: white;
+    .btn-calc {
+      background-color: #0ef;
+      color: #000;
+      font-weight: bold;
       border: none;
-      font-size: 16px;
-      cursor: pointer;
+      width: 100%;
     }
-    button:hover {
-      background-color: #0066cc;
+    .btn-calc:hover {
+      background-color: #00c4cc;
+    }
+
+    #vysledek {
+    text-align: center;
+}
+    @media (max-width: 992px) {
+      .kalkulacka-container {
+        width: 90vw;
+      }
+    }
+    @media (max-width: 576px) {
+      .kalkulacka-container {
+        width: 100vw;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+    .share-btns a {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #0ef;
+    }
+    .share-btns a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>Kalkulačka mzdy - AČR</h1>
 
-  <label for="rank">Hodnost:</label>
-  <select id="rank" name="rank">
-    <option value="">-- Vyberte hodnost --</option>
-    <option value="vojin">Vojín</option>
-    <option value="svobodnik">Svobodník</option>
-    <option value="desatnik">Desátník</option>
-    <option value="cetar">Četař</option>
-    <option value="rotny">Rotný</option>
-    <option value="rotmistr">Rotmistr</option>
-    <option value="nadrotmistr">Nadrotmistr</option>
-    <option value="praporcik">Praporčík</option>
-    <option value="nadpraporcik">Nadpraporčík</option>
-    <option value="stabni_praporcik">Štábní praporčík</option>
-    <option value="porucik">Poručík</option>
-    <option value="nadporucik">Nadporučík</option>
-    <option value="kapitan">Kapitán</option>
-    <option value="major">Major</option>
-    <option value="podplukovnik">Podplukovník</option>
-    <option value="plukovnik">Plukovník</option>
-    <option value="brigadni_general">Brigádní generál</option>
-    <option value="generalmajor">Generálmajor</option>
-    <option value="generalporucik">Generálporučík</option>
-    <option value="armadni_general">Armádní generál</option>
-  </select>
-  
+  <div class="kalkulacka-container mt-5">
+    <h1 class="text-center mb-4">Kalkulačka mzdy - AČR</h1>
 
-  <label for="vykon">Výkonnostní příplatek (Kč):</label>
-  <input type="number" id="vykon" name="vykon" min="0" step="100">
+    <label for="rank">Hodnost:</label>
+    <select id="rank" class="form-select">
+      <option value="">-- Vyberte hodnost --</option>
+      <option value="vojin">Vojín</option>
+      <option value="svobodnik">Svobodník</option>
+      <option value="desatnik">Desátník</option>
+      <option value="cetar">Četař</option>
+      <option value="rotny">Rotný</option>
+      <option value="rotmistr">Rotmistr</option>
+      <option value="nadrotmistr">Nadrotmistr</option>
+      <option value="praporcik">Praporčík</option>
+      <option value="nadpraporcik">Nadpraporčík</option>
+      <option value="stabni_praporcik">Štábní praporčík</option>
+      <option value="porucik">Poručík</option>
+      <option value="nadporucik">Nadporučík</option>
+      <option value="kapitan">Kapitán</option>
+      <option value="major">Major</option>
+      <option value="podplukovnik">Podplukovník</option>
+      <option value="plukovnik">Plukovník</option>
+      <option value="brigadni_general">Brigádní generál</option>
+      <option value="generalmajor">Generálmajor</option>
+      <option value="generalporucik">Generálporučík</option>
+      <option value="armadni_general">Armádní generál</option>
+    </select>
 
-  <label for="stabil">Stabilizační příplatek (Kč):</label>
-  <input type="number" id="stabil" name="stabil" min="0" step="1000">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="vykon">Výkonnostní příplatek (Kč):</label>
+        <input type="number" id="vykon" class="form-control" min="0" step="100">
+      </div>
+      <div class="col-md-6">
+        <label for="stabil">Stabilizační příplatek (Kč):</label>
+        <input type="number" id="stabil" class="form-control" min="0" step="1000">
+      </div>
+    </div>
 
-  <label for="bydleni">Příspěvek na bydlení (Kč):</label>
-  <input type="number" id="bydleni" name="bydleni" min="0" step="100">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="bydleni">Příspěvek na bydlení (Kč):</label>
+        <input type="number" id="bydleni" class="form-control" min="0" step="100">
+      </div>
+      <div class="col-md-6">
+        <label for="clenove">Počet ostatních členů domácnosti:</label>
+        <select id="clenove" class="form-select">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+    </div>
 
-  <label for="clenove">Počet ostatních členů domácnosti:</label>
-  <select id="clenove" name="clenove">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-
-  <div class="section">
-    <label for="deti">Počet dětí s daňovou slevou:</label>
-    <select id="deti" name="deti">
+    <label for="deti" class="mt-3">Počet dětí s daňovou slevou:</label>
+    <select id="deti" class="form-select">
       <option value="0">0</option>
       <option value="1">1</option>
       <option value="2">2</option>
@@ -99,11 +135,19 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>
+
+    <button class="btn btn-calc mt-4" onclick="vypocetMzdy()">Vypočítat mzdu</button>
+
+    <div id="vysledek" class="mt-4"></div>
+
+    <div class="share-btns mt-5">
+      <h5>Sdílet výsledek:</h5>
+      <a href="#" id="share-email" target="_blank">📧 E-mail</a>
+      <a href="#" id="share-facebook" target="_blank">📘 Facebook</a>
+      <a href="#" id="share-whatsapp" target="_blank">🟢 WhatsApp</a>
+      <a href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
+    </div>
   </div>
-
-  <button onclick="vypocetMzdy()">Vypočítat mzdu</button>
-
-  <div id="vysledek" style="margin-top: 30px; font-size: 18px;"></div>
 
   <script>
     function vypocetMzdy() {
@@ -113,7 +157,6 @@
       const deti = parseInt(document.getElementById('deti').value) || 0;
       const clenove = parseInt(document.getElementById('clenove').value) || 0;
 
-      // Základní mzda podle hodnosti
       const zakladMzdy = {
         "vojin": 20800,
         "svobodnik": 31810,
@@ -140,28 +183,29 @@
       const hodnost = document.getElementById('rank').value;
       const zaklad = zakladMzdy[hodnost] || 0;
 
-      const slevaNaDite = [0, 1267, 1860, 2320, 2320, 2320]; // přibližné hodnoty měsíční slevy
-
+      const slevaNaDite = [0, 1267, 1860, 2320, 2320, 2320];
       let celkovaSleva = 2570;
       for (let i = 1; i <= deti; i++) {
         celkovaSleva += slevaNaDite[Math.min(i, 5)];
       }
 
       const hrubaMzda = zaklad + vykon + stabil;
-      const dan = Math.max(0, (hrubaMzda * 0.15) - celkovaSleva); // jednoduchý výpočet daně
-      const zdravotniPojisteni = 0.045 * hrubaMzda
-      const socialniPojisteni = 0.071 * hrubaMzda
-
+      const dan = Math.max(0, (hrubaMzda * 0.15) - celkovaSleva);
+      const zdravotniPojisteni = Math.ceil(0.045 * hrubaMzda);
+      const socialniPojisteni = Math.ceil(0.071 * hrubaMzda);
       const cistaMzda = hrubaMzda - dan - zdravotniPojisteni - socialniPojisteni + bydleni + (clenove * 300);
 
-      document.getElementById('vysledek').innerHTML = `
+      const vysledekText = `
         <strong>Hrubá mzda:</strong> ${hrubaMzda.toLocaleString('cs-CZ')} Kč<br>
         <strong>Daň:</strong> ${dan.toLocaleString('cs-CZ')} Kč<br>
-        <strong>Zdravotni pojisteni:</strong> ${zdravotniPojisteni.toLocaleString('cs-CZ')} Kč<br>
-        <strong>Socialni pojisteni:</strong> ${socialniPojisteni.toLocaleString('cs-CZ')} Kč<br>
-        <strong>Čistá mzda:</strong> <span style="color:green">${cistaMzda.toLocaleString('cs-CZ')} Kč</span>
+        <strong>Zdravotní pojištění:</strong> ${zdravotniPojisteni.toLocaleString('cs-CZ')} Kč<br>
+        <strong>Sociální pojištění:</strong> ${socialniPojisteni.toLocaleString('cs-CZ')} Kč<br>
+        <strong>Čistá mzda:</strong> <span style="color:#fff; font-size:1.5em; font-weight:bold">${cistaMzda.toLocaleString('cs-CZ')} Kč</span>
       `;
+
+      document.getElementById('vysledek').innerHTML = vysledekText;
     }
   </script>
 </body>
 </html>
+
