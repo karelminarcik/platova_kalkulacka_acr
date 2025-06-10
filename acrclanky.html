@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3909467NT0"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3909467NT0');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Přehledné a denně aktualizované články o AČR - novinky, analýzy a zprávy o Armádě České republiky z ověřených českých zpravodajských portálů." />
+    <title>Novinky z Armády ČR | Aktuální zprávy a články o české armádě</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/c3fa60ce80.js" crossorigin="anonymous"></script>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Novinky o české armádě na jednom místě",
+          "url": "https://www.rentaacr.cz/acrclanky",
+          "description": "Přehledné a denně aktualizované články o AČR - novinky, analýzy a zprávy o Armádě České republiky z ověřených českých zpravodajských portálů.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Renta AČR",
+            "url": "https://www.rentaacr.cz",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.rentaacr.cz/icons/apple-touch-icon.png",
+              "width": 60,
+              "height": 60
+            }
+          },
+          "inLanguage": "cs",
+          "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Seznam Zprávy"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Novinky.cz"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "iRozhlas"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "AČR (mo.gov.cz)"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "MO (mocr.mo.gov.cz)"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "name": "Deník.cz"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "name": "Aktuálně.cz"
+              }
+            ]
+          }
+        }
+        </script>
+        
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #212529;
+        }
+
+        header .navbar-brand img {
+            border-radius: 8px;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #e9f5ff;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        input::placeholder {
+            font-style: italic;
+            opacity: 0.6;
+        }
+
+        .text-decoration-underline-hover:hover {
+            text-decoration: underline !important;
+          }
+
+        .badge-seznam { background-color: #dc3545 !important; color: #fff !important; }
+        .badge-denik { background-color: #007bff !important; color: #fff !important; }
+        .badge-acr { background-color: #08651e !important; color: #fff !important; }
+        .badge-mo { background-color: #28a745 !important; color: #fff !important; }
+        .badge-novinky { background-color: #ffc107 !important; color: #000 !important; }
+        .badge-irozhlas { background-color: #6f42c1 !important; color: #fff !important; }
+        .badge-aktualne { background-color: #17a2b8 !important; color: #fff !important; }
+        .badge-default { background-color: #6c757d !important; color: #fff !important; }
+    </style>
+</head>
+<body>
+
+<header class="py-3 shadow-sm sticky-top text-white">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand text-white d-flex align-items-center gap-2" href="index.html">
+            <img src="icons/apple-touch-icon.png" alt="Logo Renta AČR" width="40" height="40">
+            <strong class="fs-4">Renta AČR</strong>
+        </a>
+        <span id="currentDate" class="fw-semibold fs-5"></span>
+    </div>
+</header>
+
+<main class="container my-5">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">📰 Česká armáda: Nejnovější aktuality a informace</h1>
+        <p class="text-muted">Denně aktualizované zprávy z důvěryhodných zdrojů</p>
+    </div>
+
+    <div class="alert alert-info text-center shadow-sm">
+        <p class="mb-1">
+            Zdroje: 
+            <strong>Seznam Zprávy, Novinky.cz, iRozhlas, AČR, MO, Deník.cz, Aktuálně.cz</strong>
+        </p>
+        <p class="mb-0">
+            📣 Máte tip na nový zdroj? Napište nám na 
+            <a href="https://www.facebook.com/rentaacr" rel="noopener" title="facebook" class="text-decoration-underline fw-semibold" target="_blank">Facebooku</a>!
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <input type="text" id="searchInput" class="form-control form-control-lg shadow-sm" placeholder="🔍 Vyhledat článek...">
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover align-middle bg-white rounded">
+            <thead class="table-dark">
+                <tr>
+                    <th>Název</th>
+                    <th>Zdroj</th>
+                    <th>Datum</th>
+                </tr>
+            </thead>
+            <tbody id="articles-table">
+                <!-- Články se načtou sem -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <button id="loadMoreBtn" class="btn btn-outline-primary btn-lg px-4 rounded-pill">Načíst více</button>
+    </div>
+</main>
+
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+        <p class="mb-1"><a href="index.html" class="text-decoration-none text-info text-decoration-underline-hover">RentaACR</a> © <span id="currentYear"></span> vytvořil 
+            <a href="karelminarcik.html" class="text-info text-decoration-none text-decoration-underline-hover">Karel Minarčík</a>
+        </p>
+        <p class="mb-0">
+            Sledujte nás:
+            <a href="https://www.facebook.com/rentaacr" target="_blank" rel="noopener" title="facebook" class="text-white ms-2">
+                <i class="fab fa-facebook fa-lg"></i>
+            </a>
+        </p>
+    </div>
+</footer>
+
+<script>
+    const API_URL = "https://webscraper-czech-media.onrender.com/articles";
+    let visibleArticles = 20;
+
+    const sourceColors = {
+        "seznam zprávy": "badge-seznam",
+        "deník.cz": "badge-denik",
+        "ačr (mo.gov.cz)": "badge-acr",
+        "mo (mocr.mo.gov.cz)": "badge-mo",
+        "novinky.cz": "badge-novinky",
+        "irozhlas": "badge-irozhlas",
+        "aktuálně.cz": "badge-aktualne"
+    };
+
+    async function loadArticles(limit = visibleArticles) {
+        try {
+            const response = await fetch(API_URL);
+            const articles = await response.json();
+            const table = document.getElementById("articles-table");
+            table.innerHTML = "";
+
+            const latestArticles = articles.sort((a, b) => new Date(b.date_added) - new Date(a.date_added)).slice(0, limit);
+            
+            latestArticles.forEach(article => {
+                let normalizedSource = article.source.trim().toLowerCase();
+                if (normalizedSource.includes("seznam")) normalizedSource = "seznam zprávy";
+                if (normalizedSource.includes("denik")) normalizedSource = "deník.cz";
+                if (normalizedSource.includes("acr")) normalizedSource = "ačr (mo.gov.cz)";
+                if (normalizedSource.includes("mocr")) normalizedSource = "mo (mocr.mo.gov.cz)";
+                if (normalizedSource.includes("novinky")) normalizedSource = "novinky.cz";
+                if (normalizedSource.includes("irozhlas")) normalizedSource = "irozhlas";
+                if (normalizedSource.includes("aktualne")) normalizedSource = "aktuálně.cz";
+
+                const badgeClass = sourceColors[normalizedSource] || "badge-default";
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td><a href="${article.link}" target="_blank" class="text-decoration-none">${article.title}</a></td>
+                    <td><span class="badge ${badgeClass}">${article.source}</span></td>
+                    <td>${new Date(article.date_added).toLocaleDateString("cs-CZ")}</td>
+                `;
+                table.appendChild(row);
+            });
+        } catch (error) {
+            console.error("Chyba při načítání článků:", error);
+        }
+    }
+
+    loadArticles();
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+        const searchValue = this.value.toLowerCase();
+        document.querySelectorAll("#articles-table tr").forEach(row => {
+            row.style.display = row.textContent.toLowerCase().includes(searchValue) ? "" : "none";
+        });
+    });
+
+    document.getElementById("loadMoreBtn").addEventListener("click", function () {
+        visibleArticles += 10;
+        loadArticles(visibleArticles);
+    });
+
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+    document.getElementById("currentDate").textContent = new Date().toLocaleDateString("cs-CZ", {
+        day: "2-digit", month: "2-digit", year: "numeric"
+    });
+</script>
+</body>
+</html>

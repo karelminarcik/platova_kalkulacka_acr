@@ -125,7 +125,15 @@
   </style>
 </head>
 <body>
-  <head></head>
+  <header class="py-3 shadow-sm sticky-top text-white">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand text-white d-flex align-items-center gap-2" href="index.html">
+            <img src="icons/apple-touch-icon.png" alt="Logo Renta AČR" width="40" height="40">
+            <strong class="fs-4">Renta AČR</strong>
+        </a>
+        <span id="currentDate" class="fw-semibold fs-5"></span>
+    </div>
+  </header>
 
   <main>
     <div class="kalkulacka-container mt-5">
@@ -205,8 +213,18 @@
   </div>
   </main>
 
-  <footer>
-    
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+        <p class="mb-1"><a href="index.html" class="text-decoration-none text-info text-decoration-underline-hover">RentaACR</a> © <span id="currentYear"></span> vytvořil 
+            <a href="karelminarcik.html" class="text-info text-decoration-none text-decoration-underline-hover">Karel Minarčík</a>
+        </p>
+        <p class="mb-0">
+            Sledujte nás:
+            <a href="https://www.facebook.com/rentaacr" target="_blank" rel="noopener" title="facebook" class="text-white ms-2">
+                <i class="fab fa-facebook fa-lg"></i>
+            </a>
+        </p>
+    </div>
   </footer>
 
   <script>
