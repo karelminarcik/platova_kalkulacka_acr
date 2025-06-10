@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3909467NT0"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-3909467NT0"></script>
   <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-3909467NT0');
-  </script>
+  </script> -->
 
   <meta charset="UTF-8">
   <title>Platová kalkulačka AČR</title>
@@ -131,6 +131,12 @@
     <div class="kalkulacka-container mt-5">
     <h1 class="text-center mb-4">Platová kalkulačka AČR</h1>
 
+    <label for="plat_od">Platy od:</label>
+    <select id="plat_od" class="form-select">
+      <option value="1.1.2025">od 1.1.2025</option>
+      <option value="1.7.2025">od 1.7.2025</option>
+      <option value="1.1.2026">od 1.1.2026</option>
+    </select>
     <label for="rank">Hodnost:</label>
     <select id="rank" class="form-select">
       <option value="">-- Vyberte hodnost --</option>
@@ -204,51 +210,49 @@
   </footer>
 
   <script>
+    const hodnosti = [
+      "vojin", "svobodnik", "desatnik", "cetar", "rotny", "rotmistr", "nadrotmistr", "praporcik",
+      "nadpraporcik", "stabni_praporcik", "porucik", "nadporucik", "kapitan", "major",
+      "podplukovnik", "plukovnik", "brigadni_general", "generalmajor", "generalporucik", "armadni_general"
+    ];
+  
+    const plat_1_1_2025 = [20800, 31810, 33390, 35130, 40310, 42910, 45530, 48410, 51550, 65990, 45790, 51550, 58780, 65990, 73210, 87650, 102080, 116490, 130930, 145350];
+    const plat_1_7_2025 = [22360, 34196, 35894, 37765, 43333, 46128, 48945, 52041, 55416, 70939, 48080, 54128, 61719, 69290, 76870, 92032, 107184, 122314, 137476, 152618];
+    const plat_1_1_2026 = [24037, 36761, 38586, 40597, 46600, 49618, 52669, 55925, 59550, 76137, 51646, 58017, 66103, 74120, 82227, 98394, 114809, 130699, 146674, 162639];
+  
     function vypocetMzdy() {
       const vykon = parseInt(document.getElementById('vykon').value) || 0;
       const stabil = parseInt(document.getElementById('stabil').value) || 0;
       const bydleni = parseInt(document.getElementById('bydleni').value) || 0;
       const deti = parseInt(document.getElementById('deti').value) || 0;
       const clenove = parseInt(document.getElementById('clenove').value) || 0;
-
-      const zakladMzdy = {
-        "vojin": 20800,
-        "svobodnik": 31810,
-        "desatnik": 33390,
-        "cetar": 35130,
-        "rotny": 40310,
-        "rotmistr": 42910,
-        "nadrotmistr": 45530,
-        "praporcik": 48410,
-        "nadpraporcik": 51550,
-        "stabni_praporcik": 65990,
-        "porucik": 45790,
-        "nadporucik": 51550,
-        "kapitan": 58780,
-        "major": 65990,
-        "podplukovnik": 73210,
-        "plukovnik": 87650,
-        "brigadni_general": 102080,
-        "generalmajor": 116490,
-        "generalporucik": 130930,
-        "armadni_general": 145350
-      };
-
       const hodnost = document.getElementById('rank').value;
-      const zaklad = zakladMzdy[hodnost] || 0;
-
+      const platOd = document.getElementById('plat_od').value;
+  
+      let zakladMzdy = 0;
+      const index = hodnosti.indexOf(hodnost);
+      if (index >= 0) {
+        if (platOd === "1.1.2025") {
+          zakladMzdy = plat_1_1_2025[index];
+        } else if (platOd === "1.7.2025") {
+          zakladMzdy = plat_1_7_2025[index];
+        } else if (platOd === "1.1.2026") {
+          zakladMzdy = plat_1_1_2026[index];
+        }
+      }
+  
       const slevaNaDite = [0, 1267, 1860, 2320, 2320, 2320];
       let celkovaSleva = 2570;
       for (let i = 1; i <= deti; i++) {
         celkovaSleva += slevaNaDite[Math.min(i, 5)];
       }
-
-      const hrubaMzda = zaklad + vykon + stabil;
+  
+      const hrubaMzda = zakladMzdy + vykon + stabil;
       const dan = Math.max(0, (hrubaMzda * 0.15) - celkovaSleva);
       const zdravotniPojisteni = Math.ceil(0.045 * hrubaMzda);
       const socialniPojisteni = Math.ceil(0.071 * hrubaMzda);
       const cistaMzda = hrubaMzda - dan - zdravotniPojisteni - socialniPojisteni + bydleni + (clenove * 300);
-
+  
       const vysledekText = `
         <strong>Hrubá mzda:</strong> ${hrubaMzda.toLocaleString('cs-CZ')} Kč<br>
         <strong>Daň:</strong> ${dan.toLocaleString('cs-CZ')} Kč<br>
@@ -256,10 +260,11 @@
         <strong>Sociální pojištění:</strong> ${socialniPojisteni.toLocaleString('cs-CZ')} Kč<br>
         <strong>Čistá mzda:</strong> <span style="color:#fff; font-size:1.5em; font-weight:bold">${cistaMzda.toLocaleString('cs-CZ')} Kč</span>
       `;
-
+  
       document.getElementById('vysledek').innerHTML = vysledekText;
     }
   </script>
+  
 </body>
 </html>
 
