@@ -184,9 +184,18 @@
 
     <div class="row">
       <div class="col-md-6">
+        <label for="dalsi">Další příspěvky (Kč):</label>
+        <input type="number" id="dalsi" class="form-control" min="0" step="100">
+      </div>
+
+      <div class="col-md-6">
         <label for="bydleni">Příspěvek na bydlení (Kč):</label>
         <input type="number" id="bydleni" class="form-control" min="0" step="100">
       </div>
+      
+    </div>
+
+    <div class="row">
       <div class="col-md-6">
         <label for="clenove">Počet ostatních členů domácnosti:</label>
         <select id="clenove" class="form-select">
@@ -196,21 +205,26 @@
           <option value="3">3</option>
         </select>
       </div>
-    </div>
 
-    <label for="deti" class="mt-3">Počet dětí s daňovou slevou:</label>
-    <select id="deti" class="form-select">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
+      <div class="col-md-6">
+        <label for="deti" class="mt-3">Počet dětí s daňovou slevou:</label>
+        <select id="deti" class="form-select">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      
+  </div>
 
     <button class="btn btn-calc mt-4" onclick="vypocetMzdy()">Vypočítat mzdu</button>
 
     <div id="vysledek" class="mt-4"></div>
+
+    <p>Tato platová kalkulačka pro vojáky Armády České republiky spočítá orientační měsíční čistý plat podle zadané hodnosti, příplatků a počtu členů domácnosti. Automaticky zahrnuje základní daňovou slevu na poplatníka a zohledňuje také slevy na dani za každé zadané dítě. </p>
   </div>
   </main>
 
@@ -242,6 +256,7 @@
     function vypocetMzdy() {
       const vykon = parseInt(document.getElementById('vykon').value) || 0;
       const stabil = parseInt(document.getElementById('stabil').value) || 0;
+      const dalsi = parseInt(document.getElementById('dalsi').value) || 0;
       const bydleni = parseInt(document.getElementById('bydleni').value) || 0;
       const deti = parseInt(document.getElementById('deti').value) || 0;
       const clenove = parseInt(document.getElementById('clenove').value) || 0;
@@ -270,7 +285,7 @@
       const dan = Math.max(0, (hrubaMzda * 0.15) - celkovaSleva);
       const zdravotniPojisteni = Math.ceil(0.045 * hrubaMzda);
       const socialniPojisteni = Math.ceil(0.071 * hrubaMzda);
-      const cistaMzda = hrubaMzda - dan - zdravotniPojisteni - socialniPojisteni + bydleni + (clenove * 300);
+      const cistaMzda = hrubaMzda - dan - zdravotniPojisteni - socialniPojisteni + dalsi + bydleni + (clenove * 300);
   
       const vysledekText = `
         <strong>Hrubá mzda:</strong> ${hrubaMzda.toLocaleString('cs-CZ')} Kč<br>
